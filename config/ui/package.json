@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@saas/eslint-config": "*",
-    "@saas/typescript-config": "*",
+    "@saas/tsconfig": "*",
     "@turbo/gen": "^1.12.4",
     "@types/node": "^20.11.24",
     "@types/eslint": "^8.56.5",
