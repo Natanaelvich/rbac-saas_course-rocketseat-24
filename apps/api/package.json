@@ -2,7 +2,9 @@
   "name": "@saas/api",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "build": "tsc --outDir dist",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
