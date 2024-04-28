@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    name: 'Build and push'
+    runs-on: ubuntu-latest
+    permissions:
+        contents: write
+        pull-requests: write
+        repository-projects: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Generate sha
+      id: generate_sha
+      run: |
+        SHA=$(echo $GITHUB_SHA | head -c7)
+        echo "sha=${SHA}" >> $GITHUB_OUTPUT
+    - name: Build docker image
+      run: docker build -t natanaelvich/api-rbac-saas-rocketseat-24:${{ steps.generate_sha.outputs.sha }} .
+
+    - name: Log into the container registry
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push image
+      run: |
+        docker push natanaelvich/api-rbac-saas-rocketseat-24:${{ steps.generate_sha.outputs.sha }}
+        docker tag natanaelvich/api-rbac-saas-rocketseat-24:${{ steps.generate_sha.outputs.sha }} natanaelvich/api-rbac-saas-rocketseat-24:latest
+        docker push natanaelvich/api-rbac-saas-rocketseat-24:latest
