@@ -24,4 +24,4 @@ RUN yarn turbo run build --scope=@saas/api --include-dependencies
 EXPOSE 3000
 
 # Define o comando para rodar a aplicação
-CMD ["node", "apps/api/dist/server.js"]
+CMD ["node", "apps/api/dist/http/server.js"]
