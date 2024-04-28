@@ -1,38 +1,83 @@
-# RBAC Study Project with Next.js, Node.js, and Turborepo
+# Next.js SaaS + RBAC
 
-This is a study project focused on Role-Based Access Control (RBAC) using Next.js and Node.js, managed with Turborepo.
+This project contains all the necessary boilerplate to setup a multi-tenant SaaS with Next.js including authentication and RBAC authorization.
 
-## Project Structure
+## Features
 
-The project is structured as a monorepo using Turborepo and is divided into several packages:
+### Authentication
 
-- ``config``: Contains configuration files for ESLint, Prettier, and TypeScript.
-- `ui`: A UI library that includes React components like `Button`, `Card`, and `Code`.
+- [ ] It should be able to authenticate using e-mail & password;
+- [ ] It should be able to authenticate using Github account;
+- [ ] It should be able to recover password using e-mail;
+- [x] It should be able to create an account (e-mail, name and password);
 
-## Getting Started
+### Organizations
 
-To get started with this project, you need to have Node.js (version 18 or higher) installed on your machine.
+- [ ] It should be able to create a new organization;
+- [ ] It should be able to get organizations to which the user belongs;
+- [ ] It should be able to update an organization;
+- [ ] It should be able to shutdown an organization;
+- [ ] It should be able to transfer organization ownership;
 
-1. Clone the repository.
-2. Install the dependencies with `yarn install`.
-3. Start the development server with `yarn dev`.
+### Invites
 
-## Scripts
+- [ ] It should be able to invite a new member (e-mail, role);
+- [ ] It should be able to accept an invite;
+- [ ] It should be able to revoke a pending invite;
 
-The project includes the following scripts:
+### Members
 
-- [`build`]: Builds the project using Turborepo.
-- [`dev`]: Starts the development server.
-- [`lint`]: Lints the project using ESLint.
+- [ ] It should be able to get organization members;
+- [ ] It should be able to update a member role;
 
-## Code Generation
+### Projects
 
-The project includes a generator for creating new React components in the UI library. To generate a new component, run `yarn generate:component`.
+- [ ] It should be able to get projects within a organization;
+- [ ] It should be able to create a new project (name, url, description);
+- [ ] It should be able to update a project (name, url, description);
+- [ ] It should be able to delete a project;
 
-## Contributing
+### Billing
 
-Contributions are welcome. Please make sure to lint your code before submitting a pull request.
+- [ ] It should be able to get billing details for organization ($20 per project / $10 per member excluding billing role);
 
-## License
+## RBAC
 
-This project is licensed under the MIT License.
+Roles & permissions.
+
+### Roles
+
+- Owner (count as administrator)
+- Administrator
+- Member
+- Billing (one per organization)
+- Anonymous
+
+### Permissions table
+
+|                          | Administrator | Member | Billing | Anonymous |
+| ------------------------ | ------------- | ------ | ------- | --------- |
+| Update organization      | ✅            | ❌     | ❌      | ❌        |
+| Delete organization      | ✅            | ❌     | ❌      | ❌        |
+| Invite a member          | ✅            | ❌     | ❌      | ❌        |
+| Revoke an invite         | ✅            | ❌     | ❌      | ❌        |
+| List members             | ✅            | ✅     | ✅      | ❌        |
+| Transfer ownership       | ⚠️            | ❌     | ❌      | ❌        |
+| Update member role       | ✅            | ❌     | ❌      | ❌        |
+| Delete member            | ✅            | ⚠️     | ❌      | ❌        |
+| List projects            | ✅            | ✅     | ✅      | ❌        |
+| Create a new project     | ✅            | ✅     | ❌      | ❌        |
+| Update a project         | ✅            | ⚠️     | ❌      | ❌        |
+| Delete a project         | ✅            | ⚠️     | ❌      | ❌        |
+| Get billing details      | ✅            | ❌     | ✅      | ❌        |
+| Export billing details   | ✅            | ❌     | ✅      | ❌        |
+
+> ✅ = allowed
+> ❌ = not allowed
+> ⚠️ = allowed w/ conditions
+
+#### Conditions
+
+- Only owners may transfer organization ownership;
+- Only administrators and project authors may update/delete the project;
+- Members can leave their own organization;
