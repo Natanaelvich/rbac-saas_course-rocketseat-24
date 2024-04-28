@@ -20,8 +20,8 @@ RUN cd apps/api && yarn install --frozen-lockfile
 # Supondo que você tenha um script turbo para construir pacotes dependentes
 RUN yarn turbo run build --scope=@saas/api --include-dependencies
 
-# Expõe a porta 3333 para comunicação com o servidor
-EXPOSE 3333
+# Expõe a porta 3000 para comunicação com o servidor
+EXPOSE 3000
 
 # Define o comando para rodar a aplicação
 CMD ["node", "apps/api/dist/server.js"]
