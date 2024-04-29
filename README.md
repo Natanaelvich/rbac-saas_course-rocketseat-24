@@ -81,3 +81,10 @@ Roles & permissions.
 - Only owners may transfer organization ownership;
 - Only administrators and project authors may update/delete the project;
 - Members can leave their own organization;
+
+## Api RBAC
+
+### OAUTH GITHUB
+
+- [Application Github](https://github.com/settings/applications/2561789)
+- [Autorization Github](https://github.com/login/oauth/authorize?client_id=4ba89b0bbad3176d796b&redirect_uri=http://localhost:3000/api/auth/callback)
