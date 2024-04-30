@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 COPY package.json yarn.lock turbo.json ./
 COPY config/ config/
 COPY packages/auth/ packages/auth/
+COPY packages/env/ packages/env/
 
 # Instala as dependências do projeto principal
 RUN yarn install --frozen-lockfile
