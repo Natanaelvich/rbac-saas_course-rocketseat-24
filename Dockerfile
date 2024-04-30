@@ -26,11 +26,7 @@ FROM node:20-alpine3.19 AS deploy
 WORKDIR /usr/src/app
 
 # Copia os arquivos de configuração necessários para o diretório de trabalho
-COPY --from=base /usr/src/app/package.json /usr/src/app/yarn.lock /usr/src/app/turbo.json ./
-COPY --from=base /usr/src/app/config/ config/
-COPY --from=base /usr/src/app/packages/auth/ packages/auth/
-COPY --from=base /usr/src/app/packages/env/ packages/env/
-COPY --from=base /usr/src/app/apps/api/ apps/api/
+COPY --from=base /usr/src/app/ ./
 
 # Expõe a porta 3000 para comunicação com o servidor
 EXPOSE 3000
