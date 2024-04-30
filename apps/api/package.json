@@ -2,9 +2,12 @@
   "name": "@saas/api",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tsx watch src/http/server.ts",
+    "dev": "yarn env:load tsx watch src/http/server.ts",
+    "db:migrate": "yarn env:load prisma migrate dev",
+    "db:studio": "yarn env:load prisma studio",
+    "env:load": "dotenv -e ../../.env --",
     "build": "tsc --outDir dist",
-    "start": "node dist/server.js"
+    "start": "yarn env:load node dist/server.js"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
@@ -14,8 +17,9 @@
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.12.1",
     "@saas/auth": "*",
+    "@saas/env": "*",
     "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.4.1",
     "fastify": "^4.26.2",
     "fastify-type-provider-zod": "^1.1.9",
     "zod": "^3.22.4"
