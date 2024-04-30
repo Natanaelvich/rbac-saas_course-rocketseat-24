@@ -17,3 +17,7 @@ spec:
         image: natanaelvich/api-rbac-saas-rocketseat-24
         ports:
         - containerPort: 3000
+        resources:
+          limits:
+            cpu: "1"
+            memory: "500Mi"
