@@ -78,10 +78,11 @@ model Invite {
 model Member {
     id             String       @id @default(uuid())
     role           Role         @default(MEMBER)
-    organization   Organization @relation(fields: [organizationId], references: [id])
+    organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
     organizationId String       @map("organization_id")
-    user           User         @relation(fields: [userId], references: [id])
-    userId         String       @map("user_id")
+
+    user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId String @map("user_id")
 
     @@unique([organizationId, userId])
     @@map("members")
