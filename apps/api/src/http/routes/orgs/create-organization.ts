@@ -27,6 +27,7 @@ export async function createOrganization(app: FastifyInstance) {
             201: z.object({
               organizationId: z.string().uuid(),
               organizationSlug: z.string(),
+              organizationDomain: z.string().nullish(),
             }),
           },
         },
@@ -69,6 +70,7 @@ export async function createOrganization(app: FastifyInstance) {
         return reply.status(201).send({
           organizationId: organization.id,
           organizationSlug: organization.slug,
+          organizationDomain: organization.domain,
         })
       },
     )
