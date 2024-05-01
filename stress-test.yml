@@ -1,0 +1,13 @@
+config:
+  target: "143.244.212.130"
+  phases:
+    - duration: 20
+      arrivalRate: 5
+scenarios:
+  - flow:
+      - loop:
+        - get:
+            url: "/events/018f339b-78cb-7093-8022-907abe05ff9d"
+        - get:
+            url: "/helthz"
+        count: 100
