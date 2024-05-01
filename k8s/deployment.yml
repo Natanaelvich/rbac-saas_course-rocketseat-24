@@ -14,10 +14,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: natanaelvich/api-rbac-saas-rocketseat-24
+        image: natanaelvich/nlw.service.passin
         ports:
-        - containerPort: 3000
-        resources:
-          limits:
-            cpu: "1"
-            memory: "500Mi"
+        - containerPort: 3333
