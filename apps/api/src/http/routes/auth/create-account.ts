@@ -18,6 +18,11 @@ export async function createAccount(app: FastifyInstance) {
           email: z.string().email(),
           password: z.string().min(6),
         }),
+        response: {
+          200: z.object({
+            userId: z.string().uuid(),
+          }),
+        },
       },
     },
     async (request, reply) => {
@@ -44,7 +49,7 @@ export async function createAccount(app: FastifyInstance) {
 
       const passwordHash = await hash(password, 6)
 
-      await prisma.user.create({
+      const user = await prisma.user.create({
         data: {
           name,
           email,
@@ -59,7 +64,9 @@ export async function createAccount(app: FastifyInstance) {
         },
       })
 
-      return reply.status(201).send()
+      return reply.status(200).send({
+        userId: user.id,
+      })
     },
   )
 }
