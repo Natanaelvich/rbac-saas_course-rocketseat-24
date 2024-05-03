@@ -82,7 +82,6 @@ app.register(resetPassword)
 // ORGANIZATIONS
 app.register(createOrganization)
 app.register(getMembership)
-app.register(getMembership)
 app.register(getOrganization)
 app.register(getOrganizations)
 app.register(updateOrganization)
