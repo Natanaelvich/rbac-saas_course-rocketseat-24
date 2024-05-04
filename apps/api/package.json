@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "yarn env:load tsx watch src/http/server.ts",
     "db:migrate": "yarn env:load prisma migrate dev",
-    "db:studio": "yarn env:load prisma studio",
+    "db:studio": "yarn env:load prisma studio --browser none",
     "env:load": "dotenv -e ../../.env --",
     "build": "tsc --outDir dist",
     "start": "yarn env:load node dist/server.js"
