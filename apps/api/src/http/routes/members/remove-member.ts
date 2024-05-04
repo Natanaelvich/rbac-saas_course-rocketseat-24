@@ -7,6 +7,8 @@ import { UnauthorizedError } from '@/http/routes/_errors/unauthorized-error'
 import { prisma } from '@/lib/prisma'
 import { getUserPermissions } from '@/utils/get-user-permissions'
 
+import { BadRequestError } from '../_errors/bad-request-error'
+
 export async function removeMember(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
@@ -42,9 +44,20 @@ export async function removeMember(app: FastifyInstance) {
           )
         }
 
+        const member = await prisma.member.findFirst({
+          where: {
+            userId: memberId,
+            organizationId: organization.id,
+          },
+        })
+
+        if (!member) {
+          throw new BadRequestError(`Member not found.`)
+        }
+
         await prisma.member.delete({
           where: {
-            id: memberId,
+            id: member.id,
             organizationId: organization.id,
           },
         })
