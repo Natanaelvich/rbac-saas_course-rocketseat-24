@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+        {
+            "type": "npm",
+            "script": "db:studio",
+            "path": "apps/api",
+            "group": "build",
+            "label": "prisma: db:studio"
+        },
+        {
+            "type": "npm",
+            "script": "db:migrate",
+            "path": "apps/api",
+            "group": "build",
+            "label": "prisma: db:migrate"
+        },
+    ]
+}
