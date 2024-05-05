@@ -3,6 +3,13 @@
 	"tasks": [
         {
             "type": "npm",
+            "script": "dev",
+            "path": "apps/api",
+            "group": "build",
+            "label": "api: dev"
+        },
+        {
+            "type": "npm",
             "script": "db:studio",
             "path": "apps/api",
             "group": "build",
