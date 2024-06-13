@@ -29,7 +29,7 @@ import { z } from 'zod'
 
 export const env = z
   .object({
-    SERVER_PORT: z.number().default(3000),
+    SERVER_PORT: z.number().default(3001),
     DATABASE_URL: z.string().url(),
     JWT_SECRET: z.string(),
     GITHUB_OAUTH_CLIENT_ID: z.string(),
