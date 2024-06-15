@@ -1,3 +1,5 @@
+'use server'
+
 import { HTTPError } from 'ky'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
