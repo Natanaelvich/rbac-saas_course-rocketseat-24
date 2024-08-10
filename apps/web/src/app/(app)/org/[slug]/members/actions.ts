@@ -3,7 +3,7 @@
 import { Role, roleSchema } from '@saas/auth'
 import { HTTPError } from 'ky'
 import { revalidateTag } from 'next/cache'
-import z from 'zod'
+import { z } from 'zod'
 
 import { getCurrentOrg } from '@/auth/auth'
 import { createInvite } from '@/http/create-invite'
